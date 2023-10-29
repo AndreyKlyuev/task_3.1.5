@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New user</title>
+    <title>Update user</title>
     <style>
         label, input[type='text'], input[type='submit'] {
             display: block;
@@ -44,7 +44,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/admin/create}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/admin/update?id={id}(id=${user.getId()})}" th:object="${user}">
     <label for="username">Username: </label>
     <input type="text" th:field="*{username}" id="username"/>
     <div class="error-label" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</div>
@@ -64,7 +64,6 @@
     <label for="password">Password: </label>
     <input type="password" th:field="*{password}" id="password"/>
     <div class="error-label" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
-
     <p>
         <label>Roles:
             <input type="checkbox" name="roles"
@@ -80,10 +79,10 @@
     <br/>
     <br/>
     <br/>
-    <input type="submit" value="Create!"/>
+    <input type="submit" value="Update!"/>
 </form>
 <br/>
-<br/>
 <a href="/logout" class="logout-button">Logout</a>
+
 </body>
 </html>

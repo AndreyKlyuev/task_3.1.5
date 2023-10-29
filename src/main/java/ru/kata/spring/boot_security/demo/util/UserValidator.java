@@ -5,15 +5,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.kata.spring.boot_security.demo.Services.UserDetailsServiceImp;
+import ru.kata.spring.boot_security.demo.Services.UserServiceImp;
 import ru.kata.spring.boot_security.demo.entity.User;
 
 @Component
 public class UserValidator implements Validator {
 
-    private final UserDetailsServiceImp userDetailsServiceImp;
+    private final UserServiceImp userDetailsServiceImp;
     @Autowired
-    public UserValidator(UserDetailsServiceImp userDetailsServiceImp) {
+    public UserValidator(UserServiceImp userDetailsServiceImp) {
         this.userDetailsServiceImp = userDetailsServiceImp;
     }
 
@@ -29,7 +29,7 @@ public class UserValidator implements Validator {
         try {
             userDetailsServiceImp.loadUserByUsername(user.getUsername());
         } catch (UsernameNotFoundException ignored){
-            return; // выглядит ужасно но рабтает, надеюсь не придется делать новый UserService с Optional
+            return; // выглядит ужасно но рабтает, надеюсь не придется из за этого пределывать))
         }
         errors.rejectValue("username", "", "Человек с таким именем пользователя уже существует");
     }

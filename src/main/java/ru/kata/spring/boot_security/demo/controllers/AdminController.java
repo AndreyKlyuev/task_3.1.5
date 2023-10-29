@@ -4,39 +4,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ru.kata.spring.boot_security.demo.Services.AdminService;
+import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.Services.UserServiceImp;
+import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
 import ru.kata.spring.boot_security.demo.util.UserValidator;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     private final UserValidator userValidator;
-    private final AdminService adminService;
+    private final UserServiceImp adminService;
 
     @Autowired
-    public AdminController(UserValidator userValidator, AdminService adminService) {
+    public AdminController(UserValidator userValidator, UserServiceImp adminService) {
         this.userValidator = userValidator;
         this.adminService = adminService;
     }
 
- // users - admin
     @GetMapping()
     public String adminPlace(Model model){
-        model.addAttribute(adminService.allUsers());
+        model.addAttribute("users",adminService.allUsers());
         return "admin";
     }
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user")User user){
+    public String newUser(@ModelAttribute("user")User user, Model model){
+        List<Role> role = adminService.findAllRoles();
+        model.addAttribute("roles", role);
         return "new";
     }
-    @PostMapping("/new")
+    @PostMapping("/create")
     public String performNewUser(@ModelAttribute("user")@Valid User user,
                                  BindingResult bindingResult){
        userValidator.validate(user, bindingResult);
@@ -46,5 +46,28 @@ public class AdminController {
        adminService.saveUser(user);
 
        return "redirect:/admin";
+    }
+    @GetMapping("/edit")
+    public String edit(Model model, @RequestParam("id") long id) {
+        List<Role> role = adminService.findAllRoles();
+        model.addAttribute("user", adminService.findUser(id));
+        model.addAttribute("roles", role);
+        return "edit";
+    }
+
+    @PatchMapping("/update")
+    public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
+                         @RequestParam("id") long id) {
+        if (bindingResult.hasErrors()) {
+            return "edit";
+        }
+
+        adminService.updateUser(user, id);
+        return "redirect:/admin";
+    }
+    @DeleteMapping("/delete")
+    public String delete(@RequestParam("id") long id) {
+        adminService.deleteUser(id);
+        return "redirect:/admin";
     }
 }
