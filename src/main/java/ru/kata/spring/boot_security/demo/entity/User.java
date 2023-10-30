@@ -6,46 +6,39 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table
 public class User implements UserDetails {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotEmpty(message = "Имя не должно быть пустым")
     @Size(min = 2, max = 100, message = "Имя должно содержать от 2 до 100 символов")
-    @Column(name = "username")
     private String username;
 
     @NotEmpty(message = "Фамилия не должна быть пустой")
     @Size(min = 2, max = 100, message = "Фамилия должа содержать от 2 до 100 символов")
-    @Column(name = "lastname")
     private String lastname;
 
     @NotEmpty(message = "Пароль не должен быть пустым")
     @Size(min = 2, message = "Не создавайте пароль меньше 2 символов")
-    @Column(name = "password")
     private String password;
 
     @Min(value = 1,message = "Возраст не может быть меньше 1")
     @Max(value = 120,message = "Возраст не может быть больше 5")
-    @Column(name = "age")
     private int age;
 
     @NotEmpty(message = "Укажите email")
     @Email
-    @Column(name = "email")
     private String email;
 
     @NotEmpty(message = "Выберете роль")
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "users_roles")
-    private Set<Role> role = new HashSet<>();
+    private Set<Role> role;
 
     public User() {
     }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.spring.boot_security.demo.Services.UserServiceImp;
+import ru.kata.spring.boot_security.demo.Services.UserService;
 import ru.kata.spring.boot_security.demo.entity.Role;
 import ru.kata.spring.boot_security.demo.entity.User;
 import ru.kata.spring.boot_security.demo.util.UserValidator;
@@ -17,10 +17,10 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
     private final UserValidator userValidator;
-    private final UserServiceImp adminService;
+    private final UserService adminService;
 
     @Autowired
-    public AdminController(UserValidator userValidator, UserServiceImp adminService) {
+    public AdminController(UserValidator userValidator, UserService adminService) {
         this.userValidator = userValidator;
         this.adminService = adminService;
     }
@@ -38,8 +38,10 @@ public class AdminController {
     }
     @PostMapping("/create")
     public String performNewUser(@ModelAttribute("user")@Valid User user,
-                                 BindingResult bindingResult){
+                                 BindingResult bindingResult,Model model){
        userValidator.validate(user, bindingResult);
+        List<Role> role = adminService.findAllRoles();
+        model.addAttribute("roles", role);
 
        if (bindingResult.hasErrors())
            return "/new";
@@ -57,7 +59,9 @@ public class AdminController {
 
     @PatchMapping("/update")
     public String update(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
-                         @RequestParam("id") long id) {
+                         @RequestParam("id") long id,Model model) {
+        List<Role> role = adminService.findAllRoles();
+        model.addAttribute("roles", role);
         if (bindingResult.hasErrors()) {
             return "edit";
         }

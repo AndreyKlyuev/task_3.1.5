@@ -56,15 +56,15 @@ public class UserServiceImp implements UserService{
     public void updateUser(User user, long id) {
         User userToBeUpdated = userRepository.findById(id).orElse(null);
         if (userToBeUpdated == null){
-            throw new NullPointerException();
+            throw new NullPointerException("User для редактирования не найден");
         }
         userToBeUpdated.setUsername(user.getUsername());
         userToBeUpdated.setLastname(user.getLastname());
+        userToBeUpdated.setPassword(passwordEncoder.encode(user.getPassword()));
         userToBeUpdated.setAge(user.getAge());
         userToBeUpdated.setEmail(user.getEmail());
         userToBeUpdated.setRole(user.getRole());
-
-        userRepository.save(user);
+        userRepository.save(userToBeUpdated);
     }
     @Transactional
     @Override
