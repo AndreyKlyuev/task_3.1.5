@@ -17,7 +17,7 @@ public class User implements UserDetails {
 
     @NotEmpty(message = "Имя не должно быть пустым")
     @Size(min = 2, max = 100, message = "Имя должно содержать от 2 до 100 символов")
-    private String username;
+    private String firstname;
 
     @NotEmpty(message = "Фамилия не должна быть пустой")
     @Size(min = 2, max = 100, message = "Фамилия должа содержать от 2 до 100 символов")
@@ -29,10 +29,11 @@ public class User implements UserDetails {
 
     @Min(value = 1,message = "Возраст не может быть меньше 1")
     @Max(value = 120,message = "Возраст не может быть больше 5")
-    private int age;
+    private byte age;
 
+    @Column(unique = true)
     @NotEmpty(message = "Укажите email")
-    @Email
+    @Email(message = "Email введен не коректно")
     private String email;
 
     @NotEmpty(message = "Выберете роль")
@@ -43,8 +44,8 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String lastname, String password, int age, String email, Set<Role> role) {
-        this.username = username;
+    public User(String firstname, String lastname, String password, byte age, String email, Set<Role> role) {
+        this.firstname = firstname;
         this.lastname = lastname;
         this.password = password;
         this.age = age;
@@ -60,16 +61,21 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 
     public void setPassword(String password) {
@@ -84,11 +90,11 @@ public class User implements UserDetails {
         this.lastname = lastname;
     }
 
-    public int getAge() {
+    public byte getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(byte age) {
         this.age = age;
     }
 
@@ -136,7 +142,7 @@ public class User implements UserDetails {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", firstname='" + firstname + '\'' +
                 ", password='" + password + '\'' +
                 ", age='" + age + '\'' +
                 ", email='" + email + '\'' +

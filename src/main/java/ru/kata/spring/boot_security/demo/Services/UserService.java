@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService {
     @Override
-    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+    UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;
     User findUser(Long id);
     List<User> allUsers();
     void saveUser(User user);

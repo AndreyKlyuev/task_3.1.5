@@ -27,9 +27,9 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username).orElseThrow(() ->
-                new UsernameNotFoundException(String.format("Username %s not found", username)));
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(() ->
+                new UsernameNotFoundException(String.format("Email %s not found", email)));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class UserServiceImp implements UserService{
         if (userToBeUpdated == null){
             throw new NullPointerException("User для редактирования не найден");
         }
-        userToBeUpdated.setUsername(user.getUsername());
+        userToBeUpdated.setFirstname(user.getFirstname());
         userToBeUpdated.setLastname(user.getLastname());
         userToBeUpdated.setPassword(passwordEncoder.encode(user.getPassword()));
         userToBeUpdated.setAge(user.getAge());
