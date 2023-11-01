@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>New user</title>
@@ -65,17 +65,12 @@
     <input type="password" th:field="*{password}" id="password"/>
     <div class="error-label" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
 
-    <p>
-        <label>Roles:
-            <input type="checkbox" name="roles"
-                   th:each="role : ${roles}"
-                   th:text="${role.name}"
-                   th:value="${role.id}"
-                   th:field="*{role}"
-            />
-        </label>
-    </p>
+    <label for="role">Roles: </label>
+    <select id="role" name="role" multiple="multiple" th:field="*{role}">
+        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+    </select>
     <div class="error-label" th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Role error</div>
+
     <br/>
     <br/>
     <br/>

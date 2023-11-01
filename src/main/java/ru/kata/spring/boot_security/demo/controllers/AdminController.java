@@ -63,7 +63,7 @@ public class AdminController {
         List<Role> role = adminService.findAllRoles();
         model.addAttribute("roles", role);
         if (bindingResult.hasErrors()) {
-            return "edit";
+            return "/update";
         }
 
         adminService.updateUser(user, id);

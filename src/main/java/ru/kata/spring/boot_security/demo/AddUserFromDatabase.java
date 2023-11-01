@@ -30,12 +30,12 @@ public class AddUserFromDatabase {
         roleRepository.save(admin);
         roleRepository.save(user);
 
-        userRepository.save(new User("admin", "admin", encoder.encode("admin"),(byte) 30 ,"admin@mail.com",
+        userRepository.save(new User("admin", "admin", encoder.encode("admin"),(byte) 30 ,"admin@mail.ru",
                 new HashSet<>() {{
                     add(admin);
                     add(user);
                 }}));
-        userRepository.save(new User("user", "user", encoder.encode("user"),(byte)30 ,"user@mail.com",
+        userRepository.save(new User("user", "user", encoder.encode("user"),(byte)30 ,"user@mail.ru",
                 new HashSet<>() {{
                     add(user);
                 }}));
