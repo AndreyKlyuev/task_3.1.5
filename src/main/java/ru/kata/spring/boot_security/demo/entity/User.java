@@ -4,7 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.util.Collection;
 import java.util.Set;
 
@@ -15,28 +14,16 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-//    @NotEmpty(message = "Имя не должно быть пустым")
-//    @Size(min = 2, max = 100, message = "Имя должно содержать от 2 до 100 символов")
     private String firstname;
 
-//    @NotEmpty(message = "Фамилия не должна быть пустой")
-//    @Size(min = 2, max = 100, message = "Фамилия должа содержать от 2 до 100 символов")
     private String lastname;
 
-//    @NotEmpty(message = "Пароль не должен быть пустым")
-//    @Size(min = 2, message = "Не создавайте пароль меньше 2 символов")
     private String password;
 
-//    @Min(value = 1,message = "Возраст не может быть меньше 1")
-//    @Max(value = 120,message = "Возраст не может быть больше 5")
     private byte age;
 
-    @Column(unique = true)
-//    @NotEmpty(message = "Укажите email")
-//    @Email(message = "Email введен не коректно")
     private String email;
 
-//    @NotEmpty(message = "Выберете роль")
     @ManyToMany
     @JoinTable(name = "users_roles")
     private Set<Role> role;
