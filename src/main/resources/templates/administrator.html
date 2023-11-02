@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin panel</title>
-    <link rel="icon" type="image/png" href="/icons-spring-logo.ico">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin page</title>
+    <link rel="icon" type="image"
+          href="data:image/png;base64,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">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<div class="d-flex bg-dark" th:object="${authorizedUser}">
-    <div class="p-2 text-white font-weight-bold" th:text="*{email}"></div>
-    <div class="p-2 w-100 text-white" th:utext="'with roles: ' + *{roles}"></div>
+<div class="d-flex bg-dark" th:object="${autUser}">
+    <div class="p-2 text-white font-weight-bold" th:text="${autUser.email}"></div>
+    <div class="p-2 w-100 text-white" th:utext="'with roles: ' + ${#strings.arrayJoin(autUser.getRole(), ' ')}"></div>
     <a class="p-2 text-secondary text-right text-decoration-none" th:href="@{/logout}"> Logout </a>
 </div>
 <div class="container" style="max-width: 99vw;">
@@ -39,7 +39,7 @@
                     </nav>
                     <div class="tab-content">
                         <div class="tab-pane fade show active border" id="users_table" role="tabpanel">
-                            <div class="pl-3 pt-1 d-flex border-bottom"><h4>All users</h4></div>
+                            <div class="pl-3 pt-1 d-flex border-bottom"><h4> All users</h4></div>
                             <div class="bg-white p-3">
                                 <table class="table table-striped border-top">
                                     <thead>
@@ -57,19 +57,19 @@
                                     <tbody>
                                     <tr th:each="user : ${users}">
                                         <td th:text="${user.id}"></td>
-                                        <td th:text="${user.name}"></td>
-                                        <td th:text="${user.lastName}"></td>
+                                        <td th:text="${user.firstname}"></td>
+                                        <td th:text="${user.lastname}"></td>
                                         <td th:text="${user.age}"></td>
                                         <td th:text="${user.email}"></td>
-                                        <td th:text="${#strings.arrayJoin(user.roles, ' ')}"></td>
+                                        <td th:text="${#strings.arrayJoin(user.role, ' ')}"></td>
                                         <td>
-                                            <!-- Button trigger modal -->
+                                            <!-- Button -->
                                             <a role="button"
                                                class="btn btn-primary btn-sm"
                                                data-toggle="modal"
                                                data-target="#editModal"
                                                th:attrappend="data-target=${user.id}">Edit</a>
-                                            <!-- Modal window-->
+                                            <!-- Window-->
                                             <div id="editModal" th:attrappend="id=${user.id}"
                                                  class="modal fade" tabindex="-1" role="dialog"
                                                  aria-labelledby="TitleModalLabel" aria-hidden="true"
@@ -77,18 +77,17 @@
                                                 <div class="modal-dialog modal-dialog-scrollable">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="TitleModalLabel">Edit user</h5>
+                                                            <h5 class="modal-title">Edit user</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body bg-white">
                                                             <form id="formEditUser" th:attrappend="id=${user.id}"
-                                                                  method="post"
+                                                                  th:method="PATCH"
                                                                   th:action="@{/update}"
 
-                                                                  class="form-signin mx-auto font-weight-bold text-center"
+                                                                  class="form-signing mx-auto font-weight-bold text-center"
                                                                   style="width: 200px;">
                                                                 <p>
                                                                     <label for="id">ID</label>
@@ -98,19 +97,19 @@
                                                                            th:value="${user.id}">
                                                                 </p>
                                                                 <p>
-                                                                    <label for="name">First name</label>
+                                                                    <label for="firstname">First name</label>
                                                                     <input class="form-control form-control-sm"
                                                                            type="text"
-                                                                           name="name" th:value="${user.name}"
-                                                                           id="name" placeholder="First name" required
+                                                                           name="firstname" th:value="${user.firstname}"
+                                                                           id="firstname" placeholder="First name" required
                                                                            autofocus>
                                                                 </p>
                                                                 <p>
-                                                                    <label for="lastName">Last name</label>
+                                                                    <label for="lastname">Last name</label>
                                                                     <input class="form-control form-control-sm"
                                                                            type="text"
-                                                                           name="lastName" th:value="${user.lastName}"
-                                                                           id="lastName" placeholder="Last name">
+                                                                           name="lastname" th:value="${user.lastname}"
+                                                                           id="lastname" placeholder="Last name">
                                                                 </p>
                                                                 <p>
                                                                     <label for="age">Age</label>
@@ -128,21 +127,21 @@
                                                                            placeholder="Email" required>
                                                                 </p>
                                                                 <p>
-                                                                    <label for="passwd">Password</label>
+                                                                    <label for="password">Password</label>
                                                                     <input class="form-control form-control-sm"
                                                                            type="password"
                                                                            name="password" th:value="${user.password}"
-                                                                           id="passwd" placeholder="Password" required>
+                                                                           id="password" placeholder="Password" required>
                                                                 </p>
                                                                 <p>
-                                                                    <label for="roles">Role</label>
-                                                                    <select id="roles" name="roles"
+                                                                    <label for="role">Role</label>
+                                                                    <select id="role" name="role"
                                                                             class="form-control form-control-sm"
                                                                             multiple size="2" required>
                                                                         <option th:each="role : ${allRoles}"
-                                                                                th:value="${role}"
-                                                                                th:text="${role.roleName}"
-                                                                                th:selected="${user.roles.contains(role)}">
+                                                                                th:value="${role.id}"
+                                                                                th:text="${role.name}"
+                                                                                th:selected="${user.role.contains(role)}">
                                                                         </option>
                                                                     </select>
                                                                 </p>
@@ -162,13 +161,13 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <!-- Button trigger modal -->
+                                            <!-- Button -->
                                             <a role="button"
                                                class="btn btn-danger btn-sm"
                                                data-toggle="modal"
                                                data-target="#deleteModal"
                                                th:attrappend="data-target=${user.id}">Delete</a>
-                                            <!-- Modal window-->
+                                            <!-- Window-->
                                             <div id="deleteModal" th:attrappend="id=${user.id}"
                                                  class="modal fade" tabindex="-1" role="dialog"
                                                  aria-labelledby="TitleModalLabel" aria-hidden="true"
@@ -176,18 +175,17 @@
                                                 <div class="modal-dialog modal-dialog-scrollable">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="TitleModalLabel">Edit user</h5>
+                                                            <h5 class="modal-title">Edit user</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body bg-white">
                                                             <form id="formDeleteUser" th:attrappend="id=${user.id}"
-                                                                  method="post"
+                                                                  th:method="DELETE"
                                                                   th:action="@{/delete/{id}(id=${user.id})}"
 
-                                                                  class="form-signin mx-auto font-weight-bold text-center"
+                                                                  class="form-signing mx-auto font-weight-bold text-center"
                                                                   style="width: 200px;">
                                                                 <p>
                                                                     <label for="del_id">ID</label>
@@ -200,7 +198,7 @@
                                                                     <label for="del_name">First name</label>
                                                                     <input class="form-control form-control-sm"
                                                                            type="text"
-                                                                           name="name" th:value="${user.name}"
+                                                                           name="name" th:value="${user.firstname}"
                                                                            id="del_name" readonly
                                                                            placeholder="First name" autofocus>
                                                                 </p>
@@ -208,7 +206,7 @@
                                                                     <label for="del_lastName">Last name</label>
                                                                     <input class="form-control form-control-sm"
                                                                            type="text"
-                                                                           name="lastName" th:value="${user.lastName}"
+                                                                           name="lastName" th:value="${user.lastname}"
                                                                            id="del_lastName" readonly
                                                                            placeholder="Last name">
                                                                 </p>
@@ -235,8 +233,8 @@
                                                                             multiple size="2" readonly>
                                                                         <option th:each="role : ${allRoles}"
                                                                                 th:value="${role}"
-                                                                                th:text="${role.roleName}"
-                                                                                th:selected="${user.roles.contains(role)}">
+                                                                                th:text="${role.name}"
+                                                                                th:selected="${user.role.contains(role)}">
                                                                         </option>
                                                                     </select>
                                                                 </p>
@@ -255,11 +253,6 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <!--                                        <td>-->
-                                        <!--                                            <form th:action="@{/delete/{id}(id=${user.id})}" method="post" th:object="${user}">-->
-                                        <!--                                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>-->
-                                        <!--                                            </form>-->
-                                        <!--                                        </td>-->
                                     </tr>
                                     </tbody>
                                 </table>
@@ -269,17 +262,17 @@
                         <div class="tab-pane fade border" id="new_user" role="tabpanel">
                             <div class="pl-3 pt-1 d-flex border-bottom"><h4> Add new user</h4></div>
                             <div class="container bg-white">
-                                <form class="form-signin mx-auto font-weight-bold text-center p-3"
+                                <form class="form-signing mx-auto font-weight-bold text-center p-3"
                                       style="width: 300px;" th:action="@{/create}" method="post" th:object="${newUser}">
                                     <p>
                                         <label for="newName">First name</label>
                                         <input class="form-control form-control-sm" type="text"
-                                               name="name" id="newName" placeholder="First name" required autofocus>
+                                               name="firstname" id="newName" placeholder="First name" required autofocus>
                                     </p>
                                     <p>
                                         <label for="newLastName">Last name</label>
                                         <input class="form-control form-control-sm" type="text"
-                                               name="lastName" id="newLastName" placeholder="Last name">
+                                               name="lastname" id="newLastName" placeholder="Last name">
                                     </p>
                                     <p>
                                         <label for="newAge">Age</label>
@@ -298,11 +291,11 @@
                                     </p>
                                     <p>
                                         <label for="newRoles">Role</label>
-                                        <select class="form-control form-control-sm" id="newRoles" name="roles" multiple
+                                        <select class="form-control form-control-sm" id="newRoles" name="role" multiple
                                                 size="2" required>
                                             <option th:each="role : ${allRoles}"
-                                                    th:value="${role}"
-                                                    th:text="${role.roleName}"></option>
+                                                    th:value="${role.id}"
+                                                    th:text="${role.name}"></option>
                                         </select>
                                     </p>
                                     <button class="btn btn-success" type="submit">Add new user</button>
@@ -330,17 +323,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:object="${authorizedUser}">
-                                <td th:utext="${authorizedUser.id}"></td>
-                                <td th:utext="${authorizedUser.name}"></td>
-                                <td th:utext="${authorizedUser.lastName}"></td>
-                                <td th:utext="${authorizedUser.age}"></td>
-                                <td th:utext="${authorizedUser.email}"></td>
-                                <td>
-                                    <th:block th:each="role : ${authorizedUser.roles}">
-                                        <a th:text="${role.roleName}"></a>
-                                    </th:block>
-                                </td>
+                            <tr th:object="${autUser}">
+                                <td th:text="${autUser.id}"></td>
+                                <td th:text="${autUser.firstname}"></td>
+                                <td th:text="${autUser.lastname}"></td>
+                                <td th:text="${autUser.age}"></td>
+                                <td th:text="${autUser.email}"></td>
+                                <td th:text="${#strings.arrayJoin(autUser.role, ' ')}"></td>
                             </tr>
                             </tbody>
                         </table>

@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.Services;
+package ru.kata.spring.boot_security.demo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,18 +53,14 @@ public class UserServiceImp implements UserService{
 
     @Transactional
     @Override
-    public void updateUser(User user, long id) {
-        User userToBeUpdated = userRepository.findById(id).orElse(null);
-        if (userToBeUpdated == null){
-            throw new NullPointerException("User для редактирования не найден");
-        }
-        userToBeUpdated.setFirstname(user.getFirstname());
-        userToBeUpdated.setLastname(user.getLastname());
-        userToBeUpdated.setPassword(passwordEncoder.encode(user.getPassword()));
-        userToBeUpdated.setAge(user.getAge());
-        userToBeUpdated.setEmail(user.getEmail());
-        userToBeUpdated.setRole(user.getRole());
-        userRepository.save(userToBeUpdated);
+    public void updateUser(User user) {
+        user.setFirstname(user.getFirstname());
+        user.setLastname(user.getLastname());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setAge(user.getAge());
+        user.setEmail(user.getEmail());
+        user.setRole(user.getRole());
+        userRepository.save(user);
     }
     @Transactional
     @Override
