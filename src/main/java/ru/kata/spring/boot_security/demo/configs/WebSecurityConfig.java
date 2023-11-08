@@ -23,9 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.passwordEncoder = passwordEncoder;
         this.userHandler = userHandler;
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
@@ -38,11 +39,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userServiceImp)
                 .passwordEncoder(passwordEncoder);
-
     }
 
 }

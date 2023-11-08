@@ -24,7 +24,7 @@ public class User implements UserDetails {
 
     private String email;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles")
     private Set<Role> role;
 

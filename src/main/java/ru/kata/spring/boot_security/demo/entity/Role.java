@@ -13,6 +13,7 @@ public class Role implements GrantedAuthority {
     private Long id;
     private String name;
     @ManyToMany(mappedBy = "role")
+    @Transient
     private List<User> users;
 
     public Role() {
@@ -53,7 +54,7 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
-        return name.replace("ROLE_","");
+        return name.replace("ROLE_", "");
     }
 
 }

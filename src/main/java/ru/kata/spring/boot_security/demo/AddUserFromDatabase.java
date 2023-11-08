@@ -17,25 +17,27 @@ public class AddUserFromDatabase {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
+
     @Autowired
     public AddUserFromDatabase(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.encoder = encoder;
     }
+
     @PostConstruct
-    public void addUserFromDb()  {
+    public void addUserFromDb() {
         Role admin = new Role("ROLE_ADMIN");
         Role user = new Role("ROLE_USER");
         roleRepository.save(admin);
         roleRepository.save(user);
 
-        userRepository.save(new User("admin", "admin", encoder.encode("admin"),(byte) 30 ,"admin@mail.ru",
+        userRepository.save(new User("admin", "admin", encoder.encode("admin"), (byte) 30, "admin@mail.ru",
                 new HashSet<>() {{
                     add(admin);
                     add(user);
                 }}));
-        userRepository.save(new User("user", "user", encoder.encode("user"),(byte)30 ,"user@mail.ru",
+        userRepository.save(new User("user", "user", encoder.encode("user"), (byte) 30, "user@mail.ru",
                 new HashSet<>() {{
                     add(user);
                 }}));
